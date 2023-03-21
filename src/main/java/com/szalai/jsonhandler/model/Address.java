@@ -14,7 +14,7 @@ public class Address {
 
     public Address(String address, String zipcode, String country) {
         map.put("address", address);
-        map.put("zipcode", zipcode);
+        map.put("zip", zipcode);
         map.put("country", country);
     }
 

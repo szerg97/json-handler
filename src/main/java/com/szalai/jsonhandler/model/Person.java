@@ -31,6 +31,7 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
         "address",
         "dateOfBirth",
         "gender",
+        "age",
         "registered"
 })
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
@@ -41,14 +42,18 @@ public class Person {
             value = "personId"
     )
     private UUID id;
+    @JsonProperty(value = "fullName")
     private String name;
+    @JsonProperty(value = "emailAddress")
     private String email;
+    @JsonProperty(value = "phoneNumber")
     private String phone;
     @JsonProperty(access = WRITE_ONLY)
     private LocalDate dateOfBirth;
     @JsonProperty(access = READ_ONLY)
     private int age;
     private GenderType gender;
+    @JsonProperty(value = "residenceInformation")
     private Address address;
     private AgeGroup ageGroup;
     private String userName;
@@ -56,6 +61,7 @@ public class Person {
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm"
     )
+    @JsonProperty(value = "registeredAt")
     private LocalDateTime registered = LocalDateTime.now();
 
     public Person(String name, String email, String phone, LocalDate dateOfBirth, GenderType gender, Address address) {
