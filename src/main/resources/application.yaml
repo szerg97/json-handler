@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "json-handler"
+  jackson:
+    deserialization:
+      read-unknown-enum-values-using-default-value: true
