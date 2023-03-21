@@ -1,6 +1,7 @@
 package com.szalai.jsonhandler.model;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
@@ -26,13 +28,18 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.WRITE_ONLY;
         "name",
         "email",
         "phone",
+        "address",
         "dateOfBirth",
-        "gender"
+        "gender",
+        "registered"
 })
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 public class Person {
 
-    @JsonProperty(access = READ_ONLY, value = "personId")
+    @JsonProperty(
+            access = READ_ONLY,
+            value = "personId"
+    )
     private UUID id;
     private String name;
     private String email;
@@ -45,6 +52,11 @@ public class Person {
     private Address address;
     private AgeGroup ageGroup;
     private String userName;
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = "yyyy-MM-dd hh:mm"
+    )
+    private LocalDateTime registered = LocalDateTime.now();
 
     public Person(String name, String email, String phone, LocalDate dateOfBirth, GenderType gender, Address address) {
         this.name = name;
